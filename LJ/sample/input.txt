@@ -1,0 +1,6 @@
+ndevice		1
+device_index	0 1
+src_path	../src/kernels/force_basic.cl
+#src_path	../src/kernels/blanc_kernel.cl
+#bin_path	device0.bin
+kernel_name	molecular_dynamics

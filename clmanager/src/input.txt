@@ -1,0 +1,4 @@
+ndevice		1
+device_index	0 1
+src_path	kernel.cl
+kernel_name	test

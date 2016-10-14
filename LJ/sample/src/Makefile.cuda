@@ -1,0 +1,27 @@
+CUDA_PATH=$(CUDAPATH)
+CL_LIB=$(CUDA_PATH)/lib64
+CL_HED=$(CUDA_PATH)/include
+
+#CL_FLAGS=-framework OpenCL
+CL_FLAGS= -lOpenCL
+
+#CXX_FLAGS = -std=c++11
+CXX_FLAGS = -std=gnu++0x
+CXX_FLAGS +=-g -O0
+
+INC= -I../../src
+
+SRC=$(shell ls *.cxx)
+OBJ=$(SRC:.cxx=.o)
+TARGET=md.out
+
+.SUFFIXES: .cxx .hxx. .o
+.cxx.o:	$(SRC) $(HED)
+	g++ -L$(CL_LIB) -I$(CL_HED) $(CL_FLAGS) $(CXX_FLAGS) $(INC) $< -c -o $@
+
+all:	$(TARGET)
+
+$(TARGET):	$(OBJ)
+	g++ -L$(CL_LIB) -I$(CL_HED) $(CL_FLAGS) $(CXX_FLAGS) $(INC) $^ -o $@
+clean:
+	rm *.o *.out
